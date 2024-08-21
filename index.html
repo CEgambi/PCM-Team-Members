@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Member Food Category Selection</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #game-container { margin-top: 20px; }
+        button { padding: 10px 20px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <h1>Team Member Food Category Selection</h1>
+    <div id="game-container">
+        <label for="memberSelect">Please select your name:</label>
+        <select id="memberSelect">
+            <option value="">Select...</option>
+            <option value="Anoushka">Anoushka</option>
+            <option value="Wacheke">Wacheke</option>
+            <option value="Christine">Christine</option>
+            <option value="Elizabeth">Elizabeth</option>
+            <option value="Lillian">Lillian</option>
+            <option value="John">John</option>
+            <option value="Sarah">Sarah</option>
+            <option value="Joan">Joan</option>
+            <option value="Yvonne">Yvonne</option>
+            <option value="Jonathan">Jonathan</option>
+            <option value="Dorris">Dorris</option>
+            <option value="Brian">Brian</option>
+            <option value="Egambi">Egambi</option>
+        </select>
+        <br><br>
+        <button onclick="playGame()">Click to select Food Category</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const foodCategories = {
+            "Cereals": ["Cornflakes", "Oatmeal", "Cheerios"],
+            "Proteins": ["Chicken", "Beef", "Tofu"],
+            "Fruits": ["Apple", "Banana", "Orange"],
+           };
+
+        function getRandomCategory() {
+            const categories = Object.keys(foodCategories);
+            const randomIndex = Math.floor(Math.random() * categories.length);
+            return categories[randomIndex];
+        }
+
+        function playGame() {
+            const memberSelect = document.getElementById('memberSelect');
+            const selectedMember = memberSelect.value;
+            const result = document.getElementById('result');
+
+            if (selectedMember) {
+                const category = getRandomCategory();
+                result.innerHTML = `Thank you, ${selectedMember}! Your food category is: ${category}.`;
+                memberSelect.disabled = true;
+            } else {
+                result.innerHTML = 'Please select your name from the list.';
+            }
+        }
+    </script>
+</body>
+</html>
